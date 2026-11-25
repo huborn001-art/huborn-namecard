@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>황민훈 디지털 명함</title>
+<meta name="description" content="휴본에너지허브 황민훈 디지털 명함">
+<style>
+:root{
+  --bg:#eef2f7; --card:#ffffff; --ink:#1b1b1b; --mut:#5b6472; --blue:#0066b3; --green:#51a94b; --line:#e3e8ef; --soft:#f5f8fc;
+  color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 "Noto Sans KR",system-ui,sans-serif;padding-inline:max(16px, env(safe-area-inset-left,0px)) max(16px, env(safe-area-inset-right,0px));padding-block:24px}
+.wrap{max-width:420px;margin:0 auto}
+.card{background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05),0 8px 24px rgba(20,40,70,.08)}
+.band{height:6px;background:var(--blue)}
+.head{padding:28px 24px 8px}
+.logo{display:block;width:200px;max-width:100%;height:auto}
+.name{font-size:28px;font-weight:900;margin-top:20px;letter-spacing:.01em}
+.role{font-size:14px;color:var(--blue);font-weight:700;margin-top:2px}
+.co{font-size:13px;color:var(--mut);margin-top:6px}
+.intro{padding:14px 24px 0;font-size:14px;color:var(--mut);word-break:keep-all}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:20px 24px 4px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.ghost{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.row:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.sec{padding:18px 24px 6px;font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.04em}
+.list{padding:0 12px 12px}
+.row{display:flex;align-items:center;gap:12px;padding:14px 12px;border-radius:12px;text-decoration:none;color:var(--ink)}
+.row:hover{background:var(--soft)}
+.row .k{width:64px;flex:none;font-size:13px;color:var(--mut);font-weight:700}
+.row .v{flex:1;min-width:0;font-size:15px;word-break:keep-all;overflow-wrap:anywhere}
+.row .go{flex:none;color:var(--blue);font-size:13px;font-weight:700}
+.row.static{cursor:default}
+.row.static:hover{background:transparent}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+.copy{flex:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 10px;font:700 12px/1 inherit;font-family:inherit;color:var(--blue);cursor:pointer}
+.qr{padding:8px 24px 24px;text-align:center}
+.qr p{font-size:13px;color:var(--mut);margin-bottom:12px;text-wrap:balance}
+#qr{display:inline-block;background:#fff;padding:10px;border-radius:12px;border:1px solid var(--line)}
+#qr img,#qr canvas{display:block}
+.svc{list-style:none;padding:0 12px 6px}
+.svc li{display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:12px;background:var(--soft);margin-bottom:8px}
+.svc b{font-size:15px;color:var(--ink)}
+.svc span{font-size:13px;color:var(--mut);line-height:1.5}
+.foot{text-align:center;font-size:12px;color:var(--mut);padding:14px 0 6px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1b1b1b;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <article class="card">
+    <div class="band"></div>
+    <header class="head">
+      <img class="logo" src="data:image/png;base64,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" alt="휴본 에너지 허브">
+      <h1 class="name">황민훈</h1>
+      <div class="role">태양광 영업팀장</div>
+      <div class="co">휴본에너지허브 · 본사</div>
+    </header>
+    <p class="intro">빈 지붕과 놀고 있는 땅을<br>전기를 만드는 자산으로 바꿔 드립니다.<br>설치와 투자 상담을 한 번에 도와드리겠습니다.</p>
+
+    <div class="actions">
+      <a class="btn primary" href="tel:01049555110">전화하기</a>
+      <a class="btn primary" href="tel:15880144">대표번호</a>
+      <a class="btn ghost" href="sms:01049555110">문자 보내기</a>
+      <button class="btn ghost" id="save" type="button">연락처 저장</button>
+    </div>
+
+    <div class="sec">주요 서비스</div>
+    <ul class="svc">
+      <li><b>주택 태양광</b><span>빈 지붕에 맞춘 설치 상담과 전기요금 절감 계산</span></li>
+      <li><b>공장·창고 태양광</b><span>넓은 지붕을 활용한 설치와 투자 검토</span></li>
+      <li><b>토지 태양광 투자</b><span>부지 검토부터 사업성 상담까지 함께 진행</span></li>
+      <li><b>인허가·설치 절차</b><span>서류 준비와 시공 일정을 처음부터 끝까지 안내</span></li>
+      <li><b>설치 후 관리</b><span>발전량 확인과 유지보수 상담</span></li>
+    </ul>
+
+    <div class="sec">연락처</div>
+    <div class="list">
+      <a class="row" href="tel:01049555110"><span class="k">휴대폰</span><span class="v">010-4955-5110</span><span class="go">연결 ›</span></a>
+      <a class="row" href="tel:15880144"><span class="k">대표</span><span class="v">1588-0144</span><span class="go">연결 ›</span></a>
+      <a class="row" href="mailto:huborn001@gmail.com"><span class="k">이메일</span><span class="v">huborn001@gmail.com</span><span class="go">메일 ›</span></a>
+    </div>
+
+    <div class="sec">바로가기</div>
+    <div class="list">
+      <a class="row" href="https://www.hb-energy.co.kr/default/" target="_blank" rel="noopener"><span class="k">홈페이지</span><span class="v">hb-energy.co.kr</span><span class="go">열기 ›</span></a>
+      <a class="row" href="https://www.instagram.com/huborn001/" target="_blank" rel="noopener"><span class="k">인스타</span><span class="v">@huborn001</span><span class="go">열기 ›</span></a>
+      <a class="row" href="https://www.youtube.com/@%ED%83%9C%EC%96%91%EA%B4%91%EC%BB%A8%EC%84%A4%ED%8C%85%EC%A0%84%EB%AC%B8%EC%97%85%EC%B2%B4" target="_blank" rel="noopener"><span class="k">유튜브</span><span class="v">@태양광컨설팅전문업체</span><span class="go">열기 ›</span></a>
+      <a class="row" href="https://map.naver.com/v5/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B5%AC%EB%A6%AC%EC%8B%9C%20%EA%B0%88%EB%A7%A4%EC%88%9C%ED%99%98%EB%A1%9C166%EB%B2%88%EA%B8%B8%2046%20IX%ED%83%80%EC%9B%8C%20B%EC%BD%94%EC%96%B4%207%EC%B8%B5" target="_blank" rel="noopener"><span class="k">주소</span><span class="v">경기도 구리시 갈매순환로166번길 46 IX타워 B코어 7층</span><span class="go">지도 ›</span></a>
+    </div>
+
+    <div class="qr">
+      <p>이 명함을 다른 사람에게 보여 주려면 QR을 찍게 하세요</p>
+      <div id="qr" aria-label="명함 주소 QR 코드"></div>
+    </div>
+  </article>
+  <p class="foot">상담은 언제든 편하게 연락 주세요.</p>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+  var V=["BEGIN:VCARD","VERSION:3.0","N:황민훈;;;;","FN:황민훈","ORG:휴본에너지허브","TITLE:태양광 영업팀장",
+    "TEL;TYPE=CELL:+821049555110","TEL;TYPE=WORK:15880144","EMAIL;TYPE=WORK:huborn001@gmail.com",
+    "URL:https://www.hb-energy.co.kr/default/","X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/huborn001/",
+    "ADR;TYPE=WORK:;;IX타워 B코어 7층;갈매순환로166번길 46;구리시;경기도;;대한민국","END:VCARD"].join("\r\n");
+  function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("on");setTimeout(function(){t.classList.remove("on")},1800);}
+  document.getElementById("save").addEventListener("click",function(){
+    try{var b=new Blob([V],{type:"text/vcard;charset=utf-8"});var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="황민훈_휴본에너지허브.vcf";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1000);toast("연락처 파일을 받았습니다");}
+    catch(e){toast("저장에 실패했습니다. 전화번호를 직접 저장해 주세요");}
+  });
+  try{
+    if(window.QRCode){new QRCode(document.getElementById("qr"),{text:"https://www.hb-energy.co.kr/default/",width:132,height:132,correctLevel:QRCode.CorrectLevel.M});}
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
